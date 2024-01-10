@@ -1,17 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Array Cardio 💪</title>
-  <link rel="icon" href="https://fav.farm/🔥" />
-</head>
-<body>
-  <p><em>Psst: have a look at the JavaScript Console</em> 💁</p>
-  <script>
-    // Get your shorts on - this is an array workout!
-    // ## Array Cardio Day 1
-
-    // Some data we can work with
 
     const inventors = [
       { first: 'Albert', last: 'Einstein', year: 1879, passed: 1955 },
@@ -38,18 +24,44 @@
     
     // Array.prototype.filter()
     // 1. Filter the list of inventors for those who were born in the 1500's
-
+    const filtered = inventors.filter((inventor)=>{
+      return (inventor.year >= 1500 && inventor.year <= 1599)
+    })
     // Array.prototype.map()
     // 2. Give us an array of the inventors first and last names
-
+    const map = inventors.map((inventor)=>{
+      const arr = []
+      const {first, last} = inventor
+      arr.push(first,last)
+      return arr
+    })
     // Array.prototype.sort()
     // 3. Sort the inventors by birthdate, oldest to youngest
+    const ordered = inventors.sort((a,b)=>{
+      if (a.year < b.year){
+        return 1
+      }else{
+        return -1
+      }
+    })
 
     // Array.prototype.reduce()
     // 4. How many years did all the inventors live all together?
-
+    
+    const reduced = inventors.reduce((accumulator, inventor)=>{
+      return accumulator + (inventor.passed - inventor.year)
+    },0)
     // 5. Sort the inventors by years lived
-
+    const yearsLived = inventors.sort((a,b)=>{
+      const liveda = a.passed - a.year 
+      const livedb = b.passed - b.year
+      if (a.liveda < b.livedb){
+        return 1
+      }else{
+        return -1
+      }
+    })
+    console.table(yearsLived)
     // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
     // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
 
@@ -60,7 +72,12 @@
     // 8. Reduce Exercise
     // Sum up the instances of each of these
     const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
-
-  </script>
-</body>
-</html>
+    let count = 0
+    const summup = data.reduce((acc,item) => {
+      acc = item
+      if (acc === item){
+        count ++
+      }
+      return count
+    },0);
+    console.log(summup);
